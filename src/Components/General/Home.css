@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato&family=Poppins&family=Shadows+Into+Light&display=swap');
+
+.Header {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    width: 80%;
+}
+
+.tag {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    width: 30%;
+    margin-top: 2rem;
+}
+
+.home-content-one {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    margin-top: 2rem;
+}
+
+.home-content-one-part {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 50;
+    opacity: 0.7;
+    width: 70%;
+}
+
+.home-content-two {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    margin-top: 2rem;
+}
+
+.home-content-two-part {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 50;
+    opacity: 0.7;
+    width: 70%;
+}
