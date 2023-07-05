@@ -4,7 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 
 import { Card, Col, Container, Row } from 'react-bootstrap';
 
-const Read = () => {
+const Read = ({ itemAdded }) => {
   const [email, setEmail] = useState('');
   const [todoList, setTodoList] = useState([]);
 
@@ -26,7 +26,7 @@ const Read = () => {
     };
 
     fetchTodoList();
-  }, []);
+  }, [itemAdded]); // Add itemAdded to the dependency array
 
   console.log(todoList);
 

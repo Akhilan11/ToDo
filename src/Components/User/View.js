@@ -1,48 +1,67 @@
-import React from 'react'
-import { auth } from '../../Firebase/Firebase'
-import { Button, Container } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import Write from './Write'
-import Display from './Display'
-
-import {Row,Col} from 'react-bootstrap'
-import Read from './Read'
+import React, { useEffect, useState } from 'react';
+import { auth } from '../../Firebase/Firebase';
+import { Container, Row, Col, Navbar } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import Write from './Write';
+import Read from './Read';
+import Navbars from '../General/Navbar';
 
 const View = () => {
+  const [user, setUser] = useState(null); // Track the authenticated user
+  const [itemAdded, setItemAdded] = useState(false); // Track if an item is added
 
-    const user = auth.currentUser?.email
-    console.log('getname' + user)
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  useEffect(() => {
+    // Listen for changes in the authentication state
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        setUser(user);
+      } else {
+        // User is signed out
+        setUser(null);
+        navigate('/');
+      }
+    });
 
-    const signOut = () => {
-        auth.signOut()
-        .then(() => {
-            alert('Signed Out Successfully');
-            navigate('/');
-        })
-        .catch((e) => {
-            alert(e);
-        })
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, [navigate]);
+
+  const handleItemAdded = () => {
+    setItemAdded(true);
+  };
+
+  useEffect(() => {
+    // Refresh the output when an item is added
+    if (itemAdded) {
+      setItemAdded(false);
     }
+  }, [itemAdded]);
 
-    return (
+  if (!user) {
+    // Render a loading indicator or redirect to a login page
+    return <p>Loading...</p>;
+  }
+
+  return (
     <div>
-    <Container>
-        View
-        <p>hey {user}</p>
-        <Button onClick={signOut}> Logout </Button>
-        
+        <Navbars />
+        <div style={{marginTop:'5em'}}></div>
+      <Container>
+
         <Row>
-            <Col><Read/></Col>
-            <Col><Write/></Col>
+          <Col>
+            <Read itemAdded={itemAdded} />
+          </Col>
+          <Col>
+            <Write onItemAdded={handleItemAdded} />
+          </Col>
         </Row>
-
-        {/* <Display/> */}
-        
-    </Container>
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default View
+export default View;

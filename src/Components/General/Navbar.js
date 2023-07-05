@@ -1,10 +1,30 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import Logo from '../../Images/Logo.png'
 
+import { auth } from '../../Firebase/Firebase';
+import { useNavigate } from 'react-router-dom';
+
 const Navbars = () => {
+  
+  const email = auth.currentUser?.email;
+  const navigate = useNavigate()
+
+  const signOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        alert('Signed Out Successfully');
+        navigate('/');
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+
+
   return (
     <Navbar className="navbar transparent ">
     <Container>
@@ -12,9 +32,7 @@ const Navbars = () => {
       <h1 style={{paddingTop:'2em',fontFamily:'Poppins, sans-serif',fontWeight:900}}>ToDo Master</h1>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
-        <Navbar.Text>
-          <a href="" style={{textDecoration:'none',color:'black'}}>Home</a>
-        </Navbar.Text>
+          { email ? <Navbar.Text>{'Signed is as : ' + email} <Button onClick={signOut}>Logout</Button> </Navbar.Text> : null}
       </Navbar.Collapse>
     </Container>
   </Navbar>
