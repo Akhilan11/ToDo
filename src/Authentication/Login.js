@@ -3,10 +3,11 @@ import { auth, googleProvider } from '../Firebase/Firebase';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Container } from 'react-bootstrap';
+import { Container,Row,Col,Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import './Authentication.css';
+import loginImage from '../Images/Login.png'
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert('Signed in successfully');
-      navigate('/');
+      navigate('/view');
     } catch (e) {
       alert(e);
     }
@@ -42,40 +43,45 @@ const Login = () => {
   return (
     <div>
       <Container>
-        <h1>Login Account</h1>
-        <Form>
-          <Container>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                className='login-email form-outline'
-                placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
+        <h1 className='login-header'>Login Account</h1>
+        
+        <Row>
+          <Col><Image src={loginImage} style={{width:'70%',display:'flex',ustifyContent:'center',margin:'2rem'}}/></Col>
+          <Col>
+            <Form>
+              <Container>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label className='login-email-text'>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    className='login-email'
+                    placeholder="Enter email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                className='login-password'
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label className='login-password-text'>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    className='login-password'
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-            <center>
-              <p onClick={signInWithGoogle} className="text-muted text-center">
-                Login with Google
-              </p>
-            </center>
+                <Button variant="primary" type="submit" onClick={handleLogin} className='login-button'>
+                  Login
+                </Button>
 
-            <Button variant="primary" type="submit" onClick={handleLogin}>
-              Login
-            </Button>
-          </Container>
-        </Form>
+                <center>
+                  <Button onClick={signInWithGoogle} className="login-google text-center"> Login with Google</Button>
+                </center>
+              </Container>
+            </Form>
+          </Col>
+        </Row>
+        
       </Container>
     </div>
   );

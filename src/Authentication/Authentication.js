@@ -16,7 +16,7 @@ const Authentication = () => {
   };
 
   return (
-    <div>
+    <div className="authentication-container">
       {/* <div className="authentication-header">Authentication</div> */}
       <Container>
         <div className="auth-items">
@@ -27,9 +27,11 @@ const Authentication = () => {
       </Container>
 
       <Container>
-        <div className="auth-shift">
-          {signIn ? <p>Don't have an account? <Button onClick={handleSignUpClick}>Sign up</Button></p> : 
-          <p>Already have an account? <Button onClick={handleLoginClick}>Login</Button></p>}
+        <div className="auth-shift text-center">
+          <Container>
+            {signIn ? <p>Don't have an account? <Button onClick={handleSignUpClick}>Sign up</Button></p> : 
+            <p>Already have an account? <Button onClick={handleLoginClick}>Login</Button></p>}
+          </Container>
         </div>
       </Container>
     </div>

@@ -17,6 +17,7 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
     margin-top: 2rem;
+    padding-top: 4rem;
 }
 
 .home-content-one-part {
@@ -30,6 +31,7 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
     margin-top: 2rem;
+    padding-top: 4rem;
 }
 
 .home-content-two-part {
@@ -37,4 +39,8 @@
     font-weight: 50;
     opacity: 0.7;
     width: 70%;
+}
+
+.img {
+    width: 80%;
 }

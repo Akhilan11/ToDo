@@ -2,11 +2,18 @@ import React from 'react'
 import './Home.css'
 import { Row, Col, Container, Image,Button } from 'react-bootstrap'
 
+import homeImage1 from '../../Images/Home.png';
+import homeImage2 from '../../Images/Home2.png';
+import Navbars from './Navbar';
+import Footer from './Footer';
+
 const Home = () => {
   return (
     <div>
 
-        <Container>
+        <Navbars/>
+
+        <Container style={{marginTop:"6em",paddingLeft:'2em'}}>
             <center>
                 <h1 className='Header'>Experience a new level of organization and productivity with ToDoMaster</h1>
                 <p className='tag'>Maximize productivity and efficiency. Streamline tasks, unleash your potential.</p>
@@ -19,11 +26,11 @@ const Home = () => {
                     <p className='home-content-one-part'>Plan your personal task management, daily routines, meeting planning 
                        and goal tracking with us </p>
                 </Col>
-                <Col><Image src='../../../Images/Home.png'/></Col>
+                <Col><Image src={homeImage1} className='img'/></Col>
             </Row> <br/><br/>
 
             <Row>
-                <Col><Image src='../../Images/Home2.png'/></Col>
+                <Col><Image src={homeImage2} className='img'/></Col>
                 <Col>
                     <h3 className='home-content-two'>Live the present and plan your future</h3>
                     <p className='home-content-two-part'>TodoMaster automatically sorted into Today, Upcoming and 
@@ -33,6 +40,7 @@ const Home = () => {
 
         </Container>
 
+        <Footer/>
     </div>
   )
 }
