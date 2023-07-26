@@ -6,6 +6,7 @@ import homeImage1 from '../../Images/Home.png';
 import homeImage2 from '../../Images/Home2.png';
 import Navbars from './Navbar';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -17,7 +18,7 @@ const Home = () => {
             <center>
                 <h1 className='Header'>Experience a new level of organization and productivity with ToDoMaster</h1>
                 <p className='tag'>Maximize productivity and efficiency. Streamline tasks, unleash your potential.</p>
-                <Button style={{backgroundColor:'#283618',borderRadius:'15%'}}>Plan your task now</Button>
+                <Link to='/auth'><Button style={{backgroundColor:'#283618',borderRadius:'15%'}}>Plan your task now</Button></Link>
             </center> <br/><br/>
 
             <Row>

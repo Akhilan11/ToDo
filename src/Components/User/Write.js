@@ -10,9 +10,6 @@ const Write = ({ onItemAdded }) => {
   const [tag, setTag] = useState('');
 
   const email = auth.currentUser?.email;
-  console.log(email);
-
-  console.log(task + date + category + tag);
 
   const todoRef = collection(db, 'todo');
 
@@ -22,6 +19,8 @@ const Write = ({ onItemAdded }) => {
     setDate(formattedDate);
   };
 
+  const number = 0;
+
   const addTask = async () => {
     try {
       await addDoc(todoRef, {
@@ -30,6 +29,8 @@ const Write = ({ onItemAdded }) => {
         Category: category,
         Tag: tag,
         Email: email,
+        Reward:number,
+        TaskDone:false
       });
       alert('Item added');
       onItemAdded(); // Notify the parent component about the item added
@@ -39,8 +40,9 @@ const Write = ({ onItemAdded }) => {
   };
 
   return (
-    <div>
-      <Container style={{ width: '90%' }}>
+    <div style={{boxShadow:'5px 5px 5px 5px #eeeeee'}}>
+      <Container style={{ width: '90%'}}>
+      <div style={{margin:'0.5em'}}>
         <h3
           style={{
             display: 'flex',
@@ -63,7 +65,7 @@ const Write = ({ onItemAdded }) => {
               </Col>
               <Col lg={3}>
                 <Form.Control
-                  type="datetime-local"
+                  type="date"
                   id="birthdaytime"
                   name="birthdaytime"
                   onChange={handleDateChange}
@@ -98,7 +100,9 @@ const Write = ({ onItemAdded }) => {
             Submit
           </Button>
         </Form>
+      </div>
       </Container>
+
     </div>
   );
 };

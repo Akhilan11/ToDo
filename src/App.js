@@ -5,6 +5,7 @@ import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import Authentication from './Authentication/Authentication';
 import Home from './Components/General/Home';
 import View from './Components/User/View';
+import ReadMore from './Components/User/ReadMore';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/auth' element={<Authentication/>}/>
             <Route path='/view' element={<View/>} />
+            <Route path='/view/task' element={<ReadMore/>} />
           </Routes>
         </Router>
     </div>
